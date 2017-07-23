@@ -1,0 +1,6 @@
+.idea/
+dist/
+*.js.map
+*.swp
+node_modules/
+*-lock.json
