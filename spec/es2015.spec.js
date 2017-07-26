@@ -1,5 +1,3 @@
-// launch with ng test and open the webpage
-
 describe('typescript tests', () => {
 
   const _ = '';
@@ -21,7 +19,6 @@ describe('typescript tests', () => {
     () => {
 
       {
-        // noinspection TsLint
         var hola = 'hi!';
         expect(hola).toEqual(_);
       }
@@ -56,7 +53,6 @@ describe('typescript tests', () => {
       let for_props = 0;
       let for_of_props = 0;
 
-      // noinspection TsLint
       for (const prop in iterable) {
         for_props++;
       }
@@ -83,7 +79,7 @@ describe('typescript tests', () => {
     () => {
 
       function createMonster(name, power) {
-        return {name, power};
+        return { name, power };
       }
 
       expect(createMonster('Soraya', 1000)).toEqual(_);
@@ -105,7 +101,7 @@ describe('typescript tests', () => {
     () => {
 
       function createMonster(name, power) {
-        return {name, power};
+        return { name, power };
       }
 
       const values = ['Soraya', 1000];
@@ -117,7 +113,7 @@ describe('typescript tests', () => {
   it('destructuring',
     () => {
 
-      const {name, power} = {name: 'Soraya', power: 1000};
+      const { name, power } = { name: 'Soraya', power: 1000 };
 
       expect(name).toEqual(_);
     }
