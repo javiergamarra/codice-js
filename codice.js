@@ -3,54 +3,62 @@ class Point {
     this.x = x;
     this.y = y;
   }
+
+  add(q) {
+    return new Point(this.x + q, this.y + q);
+  }
 }
 
-const COMMIT_RADIUS = 10;
-const half = COMMIT_RADIUS / 2;
+const radius = 10;
+const half = radius / 2;
+const width = 1000;
+const color = '#f06';
+const draw = SVG('dom_branch_explorer').size(width + 100, 500);
 
-const draw = SVG('dom_branch_explorer');
+const paintLine = function (x1, x2) {
+  const line = draw.line(x1.x, x1.y, x2.x, x2.y);
+  return line.stroke({ color, width: 2, linecap: 'round' });
+};
 
-const start = new Point(0, 15);
-const end = new Point(1000, 15);
+const paintCircle = function (x1) {
+  return draw.circle(radius).fill(color).move(x1.x, x1.y);
+};
 
+const randomX = function () {
+  const halfWidth = width / 2;
+  return Math.random() * halfWidth;
+};
+
+const start = new Point(0, radius + half);
+const end = new Point(width, radius + half);
 const origins = [];
 const ends = [];
 
-const master = draw.line(0, 20, 1000, 20);
-master.stroke({ color: '#f06', width: 2, linecap: 'round' });
-draw.circle(COMMIT_RADIUS).fill('#f06').move(start.x, start.y);
-draw.circle(COMMIT_RADIUS).fill('#f06').move(end.x, end.y);
+const master = draw.line(0, radius * 2, width, radius * 2);
+master.stroke({ color, width: 2, linecap: 'round' });
+paintCircle(start);
 
-const paintLine = function (source, finish) {
-  const startLine = draw.line(source.x + half, source.y + half, finish.x + half, finish.y + half);
-  startLine.stroke({ color: '#f06', width: 2, linecap: 'round' }).opacity(0.2);
-};
-// master.animate().move(10, 10);
 const paintCommits = function (_, i) {
-  const point1 = new Point(Math.random() * 500, 100 + 50 * i);
-  draw.circle(COMMIT_RADIUS).fill('#f06').move(point1.x, point1.y);
+  const spacing = i * 50;
+  const y = 100 + spacing;
+
+  const point1 = new Point(randomX(), y);
+  paintCircle(point1);
   origins.push(point1);
 
-  const point2 = new Point(point1.x + Math.random() * 500, 100 + 50 * i);
-  draw.circle(COMMIT_RADIUS).fill('#f06').move(point2.x, point2.y);
+  const point2 = new Point(point1.x + randomX(), y);
+  paintCircle(point2);
   ends.push(point2);
 
-  const line = draw.line(point1.x + COMMIT_RADIUS, point1.y + half, point2.x, point2.y + half);
-  line.stroke({ color: '#f06', width: 2, linecap: 'round' });
+  const line = paintLine(point1.add(half), point2.add(half));
+  line.mouseover(() => line.stroke({ width: 4 }));
+  line.mouseout(() => line.stroke({ width: 2 }));
 
   const source = [...origins].reverse().find(x => x.x < point1.x) || start;
-  paintLine(source, point1);
+  paintLine(source.add(half), point1.add(half)).opacity(0.2);
 
   const finish = [...ends].reverse().find(x => x.x > point2.x) || end;
-  paintLine(point2, finish);
-
-  line.mouseover(function () {
-    this.stroke({ color: '#ff0', width: 3 });
-  });
-
-  line.mouseout(function () {
-    this.stroke({ color: '#f06', width: 2 });
-  });
+  paintLine(point2.add(half), finish.add(half)).opacity(0.2);
 };
 
 Array.from({ length: 6 }, paintCommits);
