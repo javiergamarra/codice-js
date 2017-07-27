@@ -8,9 +8,11 @@
     "eslint-config-airbnb": "^15.1.0",
     "express": "^4.15.3",
     "request": "^2.81.0",
-    "svg.js": "^2.6.3"
+    "svg.js": "^2.6.3",
+    "vue": "^2.4.2"
   },
   "devDependencies": {
+    "@angular/cli": "^1.2.5",
     "babel-cli": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",
     "eslint-config-airbnb-base": "^11.3.1",
