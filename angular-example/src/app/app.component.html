@@ -1,17 +1,46 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div>
-  <h1>
-    Welcome to {{title}}!
-  </h1>
+<div class="dashboard-container">
 
-  <!--<app-onboarding></app-onboarding>-->
 
-  <router-outlet>
-  </router-outlet>
+  <form action="https://gmaster.io/checkout/selectlicenses" id="submit-form" method="post">
 
-  <a [routerLink]="['onboarding','account']">account</a>
-  <a [routerLink]="['onboarding','address']">address</a>
-  <a [routerLink]="['onboarding','info']">info</a>
+    <router-outlet style="width:100%"></router-outlet>
 
-</div>
+    <div class="sidebar">
+      <div class="process-path">
 
+        <a class="active current" [routerLink]="['']">
+          <li><h5>Select licenses</h5></li>
+        </a>
+        <a [routerLink]="['onboarding','account']">
+          <li><h5>Personal details</h5></li>
+        </a>
+        <a [routerLink]="['onboarding','address']">
+          <li><h5>Payment details</h5></li>
+        </a>
+        <a [routerLink]="['onboarding','info']">
+          <li><h5>Payment complete</h5></li>
+        </a>
+      </div>
+
+      <section class="summary">
+        <div class="row row-header">
+          <figure class="badges">
+            <img src="./assets/logo-gmaster-pictogram.svg" alt="gmaster" class="logo">
+            <img src="./assets/badge-license-pro.svg" alt="gmaster Pro License" class="badge">
+          </figure>
+          <h4>GitMaster Pro license</h4>
+        </div>
+
+        <div class="row row-data columns">
+          <label>Final price</label><br>
+          <label id="finalprice-summary" class="result">{{finalPrice | async}}</label>
+        </div>
+        <div class="row row-action">
+          <input type="submit" class="button button-large button-main" value="NEXT">
+        </div>
+      </section>
+    </div>
+    <input name="__RequestVerificationToken" type="hidden"
+           value="CfDJ8AeRPllcVfZIi6P2TPYF-kFCg-QhWRWPN3tacCVPbTSlnwmZUN6MlY4wZQ5ntL1cy4t6XNcLlM_aXBIXEz_9r27S1zWUfLa427jvrR9S90xdDqtQqho1E9Cey7FjWMnClCpKT5LkLthuEZmkyfkC8Q0">
+  </form>
+</div><!-- / dashboard-container -->

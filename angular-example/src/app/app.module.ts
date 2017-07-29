@@ -7,6 +7,7 @@ import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { AccountService } from './account/account.service';
+import { SharedService } from './shared.service';
 
 const routes = [
   {path: '', component: AdComponent},
@@ -24,7 +25,7 @@ const routes = [
     HttpModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [AccountService],
+  providers: [AccountService, SharedService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

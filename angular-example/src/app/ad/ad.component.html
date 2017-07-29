@@ -1,3 +1,67 @@
-<p>
-  ad works!
-</p>
+<section class="section">
+
+  <header class="section-header">
+    <h2>Buy Licenses</h2>
+    <h3>You need a gmaster license for every team member using Git</h3>
+  </header><!-- / section-header -->
+
+  <main class="section-main">
+
+    <div class="error-container">
+      <div class="validation-summary-valid" data-valmsg-summary="true">
+        <ul>
+          <li style="display:none"></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="form card card-checkout">
+      <div class="card-side card-side-left">
+        <figure>
+          <img src="./assets/logo-gmaster.svg" alt="gmaster" class="logo">
+        </figure>
+        <figure>
+          <img src="./assets/badge-license-pro.svg" alt="gmaster Pro License" class="badge">
+        </figure>
+      </div>
+
+      <div class="card-side card-side-right">
+
+        <div class="row calculation">
+          <label>Total licenses</label>
+          <input data-val="true" data-val-regex="Please enter valid number of licenses"
+                 data-val-regex-pattern="([1-9][0-9]*)"
+                 data-val-required="The NumberOfLicenses field is required." id="NumberOfLicenses"
+                 name="NumberOfLicenses" (keyup)="updateNumberLicenses(licenses.value)" value="{{numberOfLicenses}}" #licenses>
+          <div class="calculation-actions">
+            <button id="increase-button" class="up" (click)="increase()">+</button>
+            <button id="decrease-button" class="down" (click)="decrease()">-</button>
+          </div>
+        </div>
+        <div class="row result">
+          <label>Monthly cost</label>
+          <label><span class="currency">$</span><span id="monthlyprice-details"
+                                                      class="amount">{{monthlyCost | async}}</span></label>
+        </div>
+      </div><!-- / card-checkout -->
+    </div><!-- /form -->
+
+    <div class="row row-container discounts validation-summary-info" id="discounts" style="display:none">
+      <div id="discount" class="discount">
+        <label>Discount</label>
+        <label><span class="currency">$</span><span id="discount-details"
+                                                    class="discount-details"></span></label>
+      </div>
+      <div id="credit" class="credit">
+        <label>Credit</label>
+        <label><span class="currency">$</span><span id="credit-details" class="credit-details"></span></label>
+      </div>
+      <div class="final">
+        <label>Final</label>
+        <label><span id="finalprice-details" class="finalprice-details"></span></label>
+      </div>
+    </div>
+
+  </main><!-- / sector-main -->
+
+</section><!-- / section -->
