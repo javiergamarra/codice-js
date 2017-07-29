@@ -1,14 +1,15 @@
 {
   "name": "codice",
   "version": "1.0.0",
-  "description": "",
   "main": "codice.js",
   "dependencies": {
     "babel-preset-env": "^1.6.0",
     "eslint-config-airbnb": "^15.1.0",
     "express": "^4.15.3",
+    "lodash": "^4.17.4",
     "request": "^2.81.0",
     "svg.js": "^2.6.3",
+    "svgjs": "^2.6.2",
     "vue": "^2.4.2"
   },
   "devDependencies": {
@@ -27,5 +28,14 @@
     "test": "jasmine"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nhpatt/codice-js.git"
+  },
+  "bugs": {
+    "url": "https://github.com/nhpatt/codice-js/issues"
+  },
+  "homepage": "https://github.com/nhpatt/codice-js#readme",
+  "description": ""
 }
