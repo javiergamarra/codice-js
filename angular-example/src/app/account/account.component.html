@@ -1,0 +1,11 @@
+<form [formGroup]="form">
+  <label for="repo">Repo Name</label>
+  <input type="text" (keyup)="onKeyUp()" name="repo" id="repo" formControlName="repoName">
+
+  <div *ngIf="form.errors">
+    Repo already exists :(
+  </div>
+
+  <button (submit)="onSubmit()" [disabled]="form.invalid">Submit!</button>
+
+</form>
