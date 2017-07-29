@@ -1,43 +1,31 @@
 function Car(model) {
   this.model = model;
   this.drive = function () {
-    console.log('driving');
+    console.log('driving a ' + this.model);
   }
 }
 
-var car = {
-  drive: function () {
+let car = new Car('Seat Ibiza');
+car.drive();
 
-  }
-};
-
-var audi = Object.create(car);
+let audi = Object.create(car);
+audi.drive();
 
 audi.drive = function () {
-  
-}
+  console.log('audi driving')
+};
+//overriding a method
+audi.drive();
 
+let audiA2 = new Car('A2');
+let audiA4 = new Car('A4');
 
-
-var audi = new Car('A2');
-var oldAudi = new Car('A2');
-
+//adding a method to all instances
 Car.prototype.stop = function () {
-  console.log('stop');
+  console.log('stoppping a ' + this.model);
 };
 
-audi.stop();
-oldAudi.stop();
-//
-// // console.log(oldAudi.model, audi.__proto__, audi.__proto__.__proto__);
-// audi.drive();
-// audi.drive = function () {
-//   console.log('audi driving');
-// };
-//
-// audi.drive();
-// oldAudi.drive();
-//
-// var seat = Object.create(oldAudi);
-// console.log(seat.model);
-// seat.drive();
+audiA2.stop();
+audiA4.stop();
+
+console.log(audiA2.__proto__, Car.prototype, audiA2.__proto__.__proto__);

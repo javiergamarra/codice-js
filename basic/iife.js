@@ -8,7 +8,8 @@ var car = (function car() {
     console.log('crashing')
   }
 
-  return { 'conducir': drive }
+  return { 'manualDrive': drive }
 })();
 
+car.manualDrive();
 car.crash();

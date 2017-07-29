@@ -1,8 +1,8 @@
-function clownPuppiesEverywhere(param1, param2,) {
+function foo(param1, param2,) {
   console.log(param1, param2)
 }
 
-clownPuppiesEverywhere(
+foo(
   'foo',
   'bar',
 );
