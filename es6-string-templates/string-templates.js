@@ -1,4 +1,4 @@
-const value = 2;
+const value = 'My Great Web Page';
 
 const page = `
 <html>

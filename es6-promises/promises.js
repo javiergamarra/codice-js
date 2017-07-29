@@ -1,26 +1,20 @@
-let promise = new Promise((resolve, reject) => {
-  // try {
-  //   let datos = database.executeQuery();
-  //   resolve(datos);
-  // } catch (e) {
-  //   reject(new Error());
-  // }
-  for (var i = 0; i < 1000000; i++) {
+let createPromise = function (milliseconds) {
+  return new Promise((resolve, reject) => {
+    setTimeout(function () {
+      try {
+        console.log(`finished! after ${milliseconds} milliseconds`);
+        resolve('Hola!');
+      } catch (e) {
+        reject(new Error());
+      }
+    }, milliseconds)
+  });
+};
 
-  }
-}, 2000);
-
-Promise.race([promise, promise])
-  .then(x => promiseNueva())
+Promise.all([createPromise(2000), createPromise(4000)])
+  .then(x => {
+    console.log('we enter after both finish');
+    return createPromise(3000)
+  })
   .then(x => console.log(x))
-  .then(x => console.log(x));
-
-
-//
-// promise
-//   .then(x => {
-//     console.log(1);
-//     return promise
-//   })
-//   .then(x => console.log(2))
-//   .catch(err => console.log(err));
+  .catch(err => console.log(err));
